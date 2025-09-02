@@ -3,8 +3,8 @@
 $users = [
     [
         'full_name' => 'Mickaël Andrieu',
-        'email' => 'mickael.andrieu@exemple.com'
-        'age' => 34
+        'email' => 'mickael.andrieu@exemple.com',
+        'age' => 34,
     ],
     [
         'full_name' => 'Mathieu Nebra',
@@ -41,53 +41,48 @@ $recipes = [
         'title' => 'Salade Romaine',
         'recipe' => '',
         'author' => 'laurene.castor@exemple.com',
-        'is_enablad' => false,
+        'is_enabled' => false,
     ],
 ];
 
-function display_recipe(array $recipe) : string
-{
+function display_recipe(array $recipe) {
     $recipe_content = '';
-
     if ($recipe['is_enabled']) {
-        $recipe_content = '<article>';
+        $recipe_content  = '<article>';
         $recipe_content .= '<h3>' . $recipe['title'] . '</h3>';
         $recipe_content .= '<div>' . $recipe['recipe'] . '</div>';
         $recipe_content .= '<i>' . $recipe['author'] . '</i>';
         $recipe_content .= '</article>';
     }
-    
-    return $recipe;
+    return $recipe_content;
 }
 
-function display_author(string $authorEmail, array $users) : string
-{
+function display_author($authorEmail, array $users) {
     for ($i = 0; $i < count($users); $i++) {
         $author = $users[$i];
         if ($authorEmail === $author['email']) {
             return $author['full_name'] . '(' . $author['age'] . ' ans)';
         }
     }
+    return 'Auteur inconnu';
 }
 
-function get_recipes(array $recipes) : array
-{
+function get_recipes(array $recipes) {
     $valid_recipes = [];
-
-    foreach($recipes as $recipe) {
+    foreach ($recipes as $recipe) {
         if ($recipe['is_enabled']) {
             $valid_recipes[] = $recipe;
         }
     }
-
     return $valid_recipes;
 }
+
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Les recettes mais page blanche :(</title>
+    <title>Les recettes mais page blanche : </title>
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
         rel="stylesheet"
