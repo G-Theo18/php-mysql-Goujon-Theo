@@ -1,24 +1,44 @@
 <?php
 
-// Déclaration du tableau des recettes
 $recipes = [
-['Cassoulet','[...]','mickael.andrieu@exemple.com',true,],
-['Couscous','[...]','mickael.andrieu@exemple.com',false,],
+    [
+        'title'   => 'Cassoulet',
+        'recipe'  => '',
+        'author'  => 'mickael.andrieu@exemple.com',
+        'enabled' => true,
+    ],
+    [
+        'title'   => 'Couscous',
+        'recipe'  => '',
+        'author'  => 'mickael.andrieu@exemple.com',
+        'enabled' => false,
+    ],
+    [
+        'title'   => 'Escalope milanaise',
+        'recipe'  => '',
+        'author'  => 'mathieu.nebra@exemple.com',
+        'enabled' => true,
+    ],
 ];
-?>
 
+?>
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Affichage des recettes</title>
-    </head>
-    <body>
-        <ul>
-            <?php for ($lines = 0; $lines <= 1; $lines++): ?>
+<html lang="fr">
+<head>
+    <title>Affichage des recettes</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Liste des recettes disponibles</h1>
+    <ul>
+        <?php foreach ($recipes as $recipe): ?>
+            <?php if ($recipe['enabled']): ?>
                 <li>
-                    <?php echo $recipes[$lines][0] . ' (' . $recipes[$lines][2] . ')';?>
+                    <strong><u><?= $recipe['title']; ?></u></strong><br>
+                    Auteur : <?= $recipe['author']; ?>
                 </li>
-            <?php endfor; ?>
-       </ul>
-    </body>
+            <?php endif; ?>
+        <?php endforeach; ?>
+    </ul>
+</body>
 </html>
