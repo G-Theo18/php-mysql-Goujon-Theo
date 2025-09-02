@@ -67,7 +67,7 @@
         <li><a href="index.php">Accueil</a></li>
         <li><a href="page1.php">Page 1</a></li>
         <li><a href="page2.php">Page 2</a></li>
-        <li><a href="page3.php">Page 3</a></li>
+        <li><a href="contact.php">Contact</a></li>
     </ul>
 </nav>
 
@@ -75,4 +75,11 @@
     function toggleMenu() {
         document.getElementById("menu").classList.toggle("active");
     }
+
+    // Fermer le menu quand on clique sur un lien
+    document.querySelectorAll("#menu a").forEach(link => {
+        link.addEventListener("click", () => {
+            document.getElementById("menu").classList.remove("active");
+        });
+    });
 </script>
