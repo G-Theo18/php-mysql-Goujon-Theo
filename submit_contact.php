@@ -10,6 +10,23 @@ if (
 
 $email = htmlentities($_POST['email'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 $message = htmlentities(trim($_POST['message']), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+
+$screenshotMessage = '';
+if (isset($_FILES['screenshot']) && $_FILES['screenshot']['error'] === UPLOAD_ERR_OK) {
+    $uploadDir = __DIR__ . '/uploads/';
+    if (!is_dir($uploadDir)) {
+        mkdir($uploadDir, 0755, true);
+    }
+
+    $filename = basename($_FILES['screenshot']['name']);
+    $targetFile = $uploadDir . $filename;
+
+    if (move_uploaded_file($_FILES['screenshot']['tmp_name'], $targetFile)) {
+        $screenshotMessage = "Fichier uploadé avec succès : " . htmlentities($filename, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+    } else {
+        $screenshotMessage = "Erreur lors de l'upload du fichier.";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -39,6 +56,9 @@ $message = htmlentities(trim($_POST['message']), ENT_QUOTES | ENT_SUBSTITUTE, 'U
             <h5 class="card-title">Rappel de vos informations</h5>
             <p class="card-text"><b>Email</b> : <?php echo $email; ?></p>
             <p class="card-text"><b>Message</b> : <?php echo $message; ?></p>
+            <?php if ($screenshotMessage): ?>
+                <p class="card-text"><b><?php echo $screenshotMessage; ?></b></p>
+            <?php endif; ?>
         </div>
     </div>
 
