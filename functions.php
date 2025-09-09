@@ -1,30 +1,38 @@
 <?php
+// functions.php
 
-function isValidRecipe(array $recipe) {
+function isValidRecipe($recipe)
+{
     if (array_key_exists('is_enabled', $recipe)) {
-        return $recipe['is_enabled'];
+        $isEnabled = $recipe['is_enabled'];
+    } else {
+        $isEnabled = false;
     }
-    if (array_key_exists('enabled', $recipe)) {
-        return $recipe['enabled'];
-    }
-    return false;
+
+    return $isEnabled;
 }
 
-function getRecipes(array $recipes) {
+function displayAuthor($authorEmail, $users)
+{
+    for ($i = 0; $i < count($users); $i++) {
+        $author = $users[$i];
+        if ($authorEmail === $author['email']) {
+            return $author['full_name'] . '(' . $author['age'] . ' ans)';
+        }
+    }
+
+    return 'Auteur inconnu';
+}
+
+function getRecipes($recipes)
+{
     $validRecipes = [];
-    foreach ($recipes as $recipe) {
+
+    foreach($recipes as $recipe) {
         if (isValidRecipe($recipe)) {
             $validRecipes[] = $recipe;
         }
     }
-    return $validRecipes;
-}
 
-function displayAuthor($authorEmail, array $users) {
-    foreach ($users as $user) {
-        if ($authorEmail === $user['email']) {
-            return $user['full_name'] . ' (' . $user['age'] . ' ans)';
-        }
-    }
-    return "Auteur inconnu";
+    return $validRecipes;
 }

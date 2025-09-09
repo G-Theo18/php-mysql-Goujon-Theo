@@ -1,85 +1,19 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Site de recettes</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
-
-        header {
-            background: #333;
-            color: white;
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 18px;
-        }
-
-        nav {
-            display: none;
-        }
-
-        nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        nav ul li {
-            margin: 10px 0;
-        }
-
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-        }
-
-        .menu-btn {
-            font-size: 22px;
-            cursor: pointer;
-            border: none;
-            background: none;
-            color: white;
-        }
-
-        nav.active {
-            display: block;
-            background: #444;
-            padding: 10px;
-        }
-    </style>
-</head>
-<body>
-<header>
-    <h1>Site de recettes</h1>
-    <button class="menu-btn" onclick="toggleMenu()">☰</button>
-</header>
-<nav id="menu">
-    <ul>
-        <li><a href="index.php">Accueil</a></li>
-        <li><a href="page1.php">Page 1</a></li>
-        <li><a href="page2.php">Page 2</a></li>
-        <li><a href="contact.php">Contact</a></li>
-    </ul>
+<!-- header.php -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="index.php">Site de recettes</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="contact.php">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </div>
 </nav>
-
-<script>
-    function toggleMenu() {
-        document.getElementById("menu").classList.toggle("active");
-    }
-
-    // Fermer le menu quand on clique sur un lien
-    document.querySelectorAll("#menu a").forEach(link => {
-        link.addEventListener("click", () => {
-            document.getElementById("menu").classList.remove("active");
-        });
-    });
-</script>

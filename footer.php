@@ -1,7 +1,8 @@
-<footer>
-    <p style="text-align:center; padding:10px; background:#333; color:white; margin:0;">
-        &copy; 2025 - Copyright moi. Tous droits réservés.
-    </p>
+<!-- footer.php -->
+<!-- footer.php -->
+<footer class="bg-light text-center text-lg-start mt-auto">
+  <div class="text-center p-3">
+    © 2021 Copyright:
+    <a class="text-dark">Alexandre Brabant</a>
+  </div>
 </footer>
-</body>
-</html>
