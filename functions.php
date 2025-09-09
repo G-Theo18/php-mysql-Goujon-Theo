@@ -1,7 +1,7 @@
 <?php
 // functions.php
 
-function isValidRecipe($recipe)
+function isValidRecipe(array $recipe) : bool
 {
     if (array_key_exists('is_enabled', $recipe)) {
         $isEnabled = $recipe['is_enabled'];
@@ -12,7 +12,7 @@ function isValidRecipe($recipe)
     return $isEnabled;
 }
 
-function displayAuthor($authorEmail, $users)
+function displayAuthor(string $authorEmail, array $users) : string
 {
     for ($i = 0; $i < count($users); $i++) {
         $author = $users[$i];
@@ -20,11 +20,9 @@ function displayAuthor($authorEmail, $users)
             return $author['full_name'] . '(' . $author['age'] . ' ans)';
         }
     }
-
-    return 'Auteur inconnu';
 }
 
-function getRecipes($recipes)
+function getRecipes(array $recipes) : array
 {
     $validRecipes = [];
 
