@@ -1,29 +1,28 @@
 <?php
 
 include_once('variables.php');
+include_once('index.php');
 
-// Validation du formulaire
+// Soumission du formulaire
 if (isset($_POST['email']) && isset($_POST['password'])) {
+
     foreach ($users as $user) {
-        if ($user['email'] === $_POST['email'] && $user['password'] === $_POST['password']) {
-            $loggedUser = [
-                'email' => $user['email'],
-            ];
-            break;
-        } else {
-            $errorMessage = sprintf(
-                'Les informations envoyées ne permettent pas de vous identifier : (%s/%s)',
-                $_POST['email'],
-                $_POST['password']
-            );
+        // Utilisateur/trice trouvée !
+        if (
+            $user['email'] === $_POST['email'] && 
+            $user['password'] === $_POST['password']
+        ) {
+            // Enregistrement de l'email de l'utilisateur en session
+            $_SESSION['LOGGED_USER'] = $user['email'];
         }
     }
 }
 ?>
 
 <!-- Si utilisateur/trice est non identifié(e), on affiche le formulaire -->
-<?php if (!isset($loggedUser)) : ?>
-    <form action="login.php" method="post">
+<?php if (!isset($_SESSION['LOGGED_USER'])) : ?>
+
+    <form action="home.php" method="post">
         <!-- si message d'erreur on l'affiche -->
         <?php if (isset($errorMessage)) : ?>
             <div class="alert alert-danger" role="alert">
@@ -64,6 +63,6 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 <!-- Si utilisateur/trice bien connecté(e), on affiche un message de succès -->
 <?php else: ?>
     <div class="alert alert-success" role="alert">
-        Bonjour <?php echo $loggedUser['email']; ?> et bienvenue sur le site !
+        Bonjour et bienvenue sur le site <?php echo $_SESSION['LOGGED_USER']; ?>
     </div>
 <?php endif; ?>
