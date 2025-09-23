@@ -34,3 +34,16 @@ function getRecipes(array $recipes) : array
 
     return $validRecipes;
 }
+
+function ajouterRecette($title, $recipe, $author, $db) {
+    $sql = "INSERT INTO recipes (title, recipe, author, is_enabled) 
+            VALUES (:title, :recipe, :author, :is_enabled)";
+    $stmt = $db->prepare($sql);
+    $stmt->execute([
+        ':title' => $title,
+        ':recipe' => $recipe,
+        ':author' => $author,
+        ':is_enabled' => true
+    ]);
+}
+
