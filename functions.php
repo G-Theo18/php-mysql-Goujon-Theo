@@ -20,7 +20,6 @@ function displayAuthor(string $authorEmail, array $users) : string
             return $author['full_name'] . '(' . $author['age'] . ' ans)';
         }
     }
-    return 'Auteur inconnu';
 }
 
 function getRecipes(array $recipes) : array
