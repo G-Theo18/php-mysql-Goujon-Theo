@@ -7,18 +7,17 @@ const MYSQL_PASSWORD = 'root';
 
 try {
     $db = new PDO(
-        sprintf(
-            'mysql:host=%s;dbname=%s;port=%s;charset=utf8',
-            MYSQL_HOST,
-            MYSQL_NAME,
-            MYSQL_PORT
-        ),
-        MYSQL_USER,
-        MYSQL_PASSWORD
+        'mysql:host=localhost;dbname=my_recipes;charset=utf8',
+        'root',
+        'root',
+        [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION],
     );
 
-    // Activer les erreurs PDO en mode Exception
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $sqlQuery = 'SELECT * FROM recipes WHERE is_enabled = 1';
+    $recipesStatement = $db->prepare($sqlQuery);
+    $recipesStatement->execute();
+    $recipes = $recipesStatement->fetchAll(PDO::FETCH_ASSOC);
 
 } catch (Exception $exception) {
     die('Erreur : ' . $exception->getMessage());
